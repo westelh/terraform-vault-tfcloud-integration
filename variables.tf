@@ -8,7 +8,7 @@ variable "workspaces" {
     workspace = string,
     project = string,
     organization = string,
-    policy = list(string)
+    policies = list(string)
   }))
 }
 

@@ -6,9 +6,9 @@ resource "vault_jwt_auth_backend" "tfcloud" {
 }
 
 resource "vault_jwt_auth_backend_role" "role" {
-  for_each = tomap(var.workspaces)
+  for_each = { for i in var.workspaces: "${each.value.organization}-${each.value.project}-${each.value.workspace}" => i }
   backend = vault_jwt_auth_backend.tfcloud.path
-  role_name = "${each.value.organization}-${each.value.project}-${each.value.workspace}"
+  role_name = each.key
   role_type = "jwt"
   token_policies = each.value.policies
   user_claim = "terraform_full_workspace"
