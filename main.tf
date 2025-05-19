@@ -6,7 +6,7 @@ resource "vault_jwt_auth_backend" "tfcloud" {
 }
 
 resource "vault_jwt_auth_backend_role" "role" {
-  for_each = { for i in var.workspaces: "${each.value.organization}-${each.value.project}-${each.value.workspace}" => i }
+  for_each = { for i in var.workspaces: "${i.organization}-${i.project}-${i.workspace}" => i }
   backend = vault_jwt_auth_backend.tfcloud.path
   role_name = each.key
   role_type = "jwt"
