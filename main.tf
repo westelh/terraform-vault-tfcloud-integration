@@ -6,7 +6,7 @@ resource "vault_jwt_auth_backend" "tfcloud" {
 }
 
 resource "vault_jwt_auth_backend_role" "role" {
-  for_each = var.roles
+  for_each       = var.roles
   backend        = vault_jwt_auth_backend.tfcloud.path
   role_name      = each.key
   role_type      = "jwt"
