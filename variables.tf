@@ -3,8 +3,8 @@ variable "auth_path" {
   description = "Mount path for new auth backend for terraform cloud"
 }
 
-variable "workspaces" {
-  type = set(object({
+variable "roles" {
+  type = map(object({
     workspace    = string,
     project      = string,
     organization = string,
